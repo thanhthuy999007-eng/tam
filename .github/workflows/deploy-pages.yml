@@ -25,6 +25,11 @@ jobs:
         uses: actions/checkout@v6
       - name: Configure Pages
         uses: actions/configure-pages@v5
+      - name: Unpack project PDFs
+        if: hashFiles('bai-tap-pdfs.zip') != ''
+        run: |
+          unzip -o bai-tap-pdfs.zip -d .
+          rm -f bai-tap-pdfs.zip
       - name: Upload site
         uses: actions/upload-pages-artifact@v4
         with:
